@@ -10,7 +10,11 @@
 
 ## 1. 任务设定
 
-- 数据集：**ESL（EventStoryLine）**，`../Dr.ECI/data/ESC/intra_sent_causality.json`
+- 数据集：**ESL（EventStoryLine）**
+  - 数据获取：克隆原论文官方仓库 <https://github.com/DMIRLAB-Group/Dr.ECI>，使用其中的
+    `data/ESC/intra_sent_causality.json`（ESL 语料原始出处为 Caselli & Vossen, 2017）
+  - 本工程默认按相对路径读取，即把官方仓库放在本工程同级目录、保持文件夹名为 `Dr.ECI`；
+    若放在别处，改 `configs/default.yaml` 里的 `data.esl_path` 即可
   - 17,998 个事件对，233 篇文档；正例（`bi_causal_label=1`）3,184（17.7%），负例 14,814
   - 二分类：**有/无因果关系**（遵循 Dr.ECI 的任务设定，不改成 CAUSE/EFFECT 三分类）
 - 指标：Precision / Recall / F1 + Accuracy；另报句内/跨句分项、失败计数、规模、耗时、费用
@@ -46,13 +50,17 @@ code/
   parse.py          分层解析（Answer JSON / Rule JSON / 兜底），解析失败单独计数
   pipeline.py       跑 E0 / E1 / E2
   evaluate.py       P/R/F1 + 分项 + 失败计数 + 汇总 comparison.csv
+  make_figures.py   结果柱状图 / 混淆矩阵
+  extract_cases.py  抽取正确样例与错例
 configs/default.yaml
 data_info/          split.json、subset_dev.jsonl、subset_test.jsonl、statistics.json
 results/
-  E0/ E1/ E2/       每实验的 predictions_{split}.{csv,jsonl}、raw_responses.jsonl、meta、metrics
+  E0/ E1/ E2/       每实验的 metrics_test.json、meta_test.json、cases_test.md
   comparison.csv    三实验汇总
-  figures/          结果图
 ```
+
+> 体积较大的逐条预测（`predictions_*.{csv,jsonl}`）、原始响应（`raw_responses.jsonl`，约 10 MB）
+> 与结果图（`figures/`）未纳入仓库，可按第 4 节命令在本地复跑生成。
 
 ## 4. 运行
 
@@ -64,6 +72,8 @@ python code/pipeline.py --exp E0 --split dev --workers 8
 python code/pipeline.py --exp E1 --split dev --workers 8
 python code/pipeline.py --exp E2 --split dev --workers 8
 python code/evaluate.py --all
+python code/make_figures.py             # 生成 results/figures/ 结果图
+python code/extract_cases.py            # 抽取正确样例与错例
 ```
 
 - `--limit N` 可只跑前 N 条（冒烟测试）；`--resume` 可断点续跑。
