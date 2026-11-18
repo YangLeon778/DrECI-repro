@@ -1,0 +1,27 @@
+{
+  "exp": "E2",
+  "type": "dr_eci",
+  "q_threshold": 2,
+  "split": "test",
+  "n_samples": 300,
+  "wall_time_s": 3.71,
+  "llm": {
+    "model": "deepseek-flash",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "top_p": 0.7,
+    "max_tokens": 16384,
+    "concurrency": 8
+  },
+  "stats": {
+    "api_calls": 0,
+    "cache_hits": 1040,
+    "api_fail": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "reasoning_tokens": 0,
+    "cost_cny": 0.0,
+    "latency_s": 0.0
+  },
+  "truncated": 0
+}

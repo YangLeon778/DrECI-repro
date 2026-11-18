@@ -1,0 +1,27 @@
+{
+  "exp": "E0",
+  "type": "direct",
+  "q_threshold": null,
+  "split": "test",
+  "n_samples": 300,
+  "wall_time_s": 81.87,
+  "llm": {
+    "model": "deepseek-flash",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "top_p": 0.7,
+    "max_tokens": 16384,
+    "concurrency": 8
+  },
+  "stats": {
+    "api_calls": 299,
+    "cache_hits": 1,
+    "api_fail": 0,
+    "tokens_in": 54519,
+    "tokens_out": 62516,
+    "reasoning_tokens": 58576,
+    "cost_cny": 0.17955099999999996,
+    "latency_s": 583.4754004478455
+  },
+  "truncated": 0
+}

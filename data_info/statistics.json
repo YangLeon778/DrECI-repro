@@ -1,0 +1,65 @@
+{
+  "dataset": "ESL",
+  "source_file": "../Dr.ECI/data/ESC/intra_sent_causality.json",
+  "total_pairs": 17998,
+  "total_docs": 233,
+  "total_pos": 3184,
+  "label_distribution": {
+    "0": 14814,
+    "1": 3184
+  },
+  "tri_label_distribution": {
+    "0": 14814,
+    "2": 1592,
+    "1": 1592
+  },
+  "splits": {
+    "train": {
+      "n_pairs": 10718,
+      "n_docs": 136,
+      "n_pos": 1912,
+      "pos_ratio": 0.1784
+    },
+    "dev": {
+      "n_pairs": 3840,
+      "n_docs": 51,
+      "n_pos": 636,
+      "pos_ratio": 0.1656
+    },
+    "test": {
+      "n_pairs": 3440,
+      "n_docs": 46,
+      "n_pos": 636,
+      "pos_ratio": 0.1849
+    }
+  },
+  "doc_overlap_check": {
+    "train-dev": 0,
+    "train-test": 0,
+    "dev-test": 0
+  },
+  "subsets": {
+    "dev": {
+      "n_pairs": 300,
+      "n_docs": 43,
+      "n_pos": 50,
+      "n_neg": 250,
+      "pos_ratio": 0.1667,
+      "intra_sentence": 300,
+      "cross_sentence": 0,
+      "duplicate_pair_groups": 0
+    },
+    "test": {
+      "n_pairs": 300,
+      "n_docs": 45,
+      "n_pos": 55,
+      "n_neg": 245,
+      "pos_ratio": 0.1833,
+      "intra_sentence": 300,
+      "cross_sentence": 0,
+      "duplicate_pair_groups": 0
+    }
+  },
+  "subset_seed": 2026,
+  "note": "ESL（EventStoryLine）中所有事件对均来自同一句子，故只有句内（intra-sentence）指标，跨句为 0。"
+}

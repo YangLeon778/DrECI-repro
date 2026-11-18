@@ -1,0 +1,41 @@
+# Dr.ECI 复现配置（第八组）
+# 说明：所有 prompt 均逐字取自原仓库 Dr.ECI/agent*/prompt.py，未做改写。
+
+data:
+  # 相对本项目根目录
+  esl_path: "../Dr.ECI/data/ESC/intra_sent_causality.json"
+  dataset: "ESL"
+
+split:
+  seed: 42            # 文档级划分随机种子（E0/E1/E2 共用）
+  dev_ratio: 0.2
+  test_ratio: 0.2
+  subset_seed: 2026   # 固定子集抽样种子（E0/E1/E2 共用）
+  dev_subset: 300
+  test_subset: 300
+
+llm:
+  base_url: "https://api.deepseek.com"
+  model: "deepseek-flash"        # DeepSeek-V4.1-Flash（官方模型列表中的 id）
+  reasoning_effort: "low"        # 该模型默认 effort=high，隐藏推理可达 7k+ token；压低以贴近原论文的常规生成预算
+  temperature: 0.0    # 原仓库为 1.0；为可复现对比改为 0.0（见 README）
+  top_p: 0.7
+  max_tokens: 16384   # 该模型为推理模型，reasoner 阶段的隐藏推理会占用预算，需留足空间
+  timeout: 180
+  max_retries: 5
+  retry_base_sleep: 2
+  concurrency: 8
+  # 计费（人民币 / 百万 token），用于成本估算
+  price_input_per_m: 1.0
+  price_output_per_m: 2.0
+  cache_input_discount: 0.02
+
+experiments:
+  E0:
+    type: "direct"        # 单轮直接提示（vanilla）
+  E1:
+    type: "dr_eci"
+    q_threshold: 1        # 原论文阈值 q>=1
+  E2:
+    type: "dr_eci"
+    q_threshold: 2        # 消融：只改一处（阈值 1 -> 2）

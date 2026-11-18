@@ -1,0 +1,27 @@
+{
+  "exp": "E1",
+  "type": "dr_eci",
+  "q_threshold": 1,
+  "split": "test",
+  "n_samples": 300,
+  "wall_time_s": 744.12,
+  "llm": {
+    "model": "deepseek-flash",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "top_p": 0.7,
+    "max_tokens": 16384,
+    "concurrency": 8
+  },
+  "stats": {
+    "api_calls": 1071,
+    "cache_hits": 3,
+    "api_fail": 0,
+    "tokens_in": 336872,
+    "tokens_out": 865153,
+    "reasoning_tokens": 829627,
+    "cost_cny": 2.067178000000001,
+    "latency_s": 5666.257736206055
+  },
+  "truncated": 1
+}
